@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here -->
+        <!-- Set status bar color to a specific color -->
+        <item name="android:statusBarColor">#074967</item>
+    </style>
+</resources>
