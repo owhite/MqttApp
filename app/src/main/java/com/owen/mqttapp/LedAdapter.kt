@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.owen.mqttapp.utils.DataSet
+import com.owen.mqttapp.utils.LedData
 import de.hdodenhof.circleimageview.CircleImageView
 
-class LedAdapter(private val ledList: MutableList<Led>) :
+class LedAdapter(
+    private val ledList: List<LedData>,
+    var dataSet: DataSet
+) :
     RecyclerView.Adapter<LedAdapter.LedViewHolder>() {
 
     inner class LedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,14 +29,24 @@ class LedAdapter(private val ledList: MutableList<Led>) :
 
     override fun onBindViewHolder(holder: LedViewHolder, position: Int) {
         val led = ledList[position]
+        val data = dataSet
+
+        if (data.type == "LED_set") {
+            if (data.number == led.number) {
+                led.state = data.state
+            }
+        }
 
         // Preprocess color strings to ensure they're in the correct format
-        val colorOn = preprocessColor(led.colorOn)
-        val colorOff = preprocessColor(led.colorOff)
+        val colorOn = led.colorOn?.let { preprocessColor(it) }
+        val colorOff = led.colorOff?.let { preprocessColor(it) }
 
         // Set LED color based on its state
-
-        val color = if (led.state) colorOn else colorOff
+        val color = if (led.state == true) {
+            colorOn
+        } else {
+            colorOff
+        }
 //        val parsedColor = Color.parseColor(preprocessColor(color))
 //        holder.ivLedColor.setColorFilter(parsedColor)
         val backgroundDrawable = GradientDrawable().apply {
@@ -41,23 +56,20 @@ class LedAdapter(private val ledList: MutableList<Led>) :
 
         // Set the circular background drawable as the background of the CircleImageView
         holder.ivLedColor.background = backgroundDrawable
-        holder.ivLedColor.visibility = if (led.visible) View.VISIBLE else View.INVISIBLE
+        holder.ivLedColor.visibility = if (led.visible == true) View.VISIBLE else View.GONE
     }
 
     override fun getItemCount(): Int {
         return ledList.size
     }
 
-    fun addLed(led: Led) {
-        ledList.add(led)
-        notifyDataSetChanged()
+    private fun preprocessColor(color: String): String {
+        return if (color.length == 6 && !color.startsWith("#")) {
+            "#$color"
+        } else {
+            color
+        }
     }
 
- /*   private fun preprocessColor(color: String): String {
-        return if (color.length == 6) "#$color" else "#$color"
-    }*/
-    private fun preprocessColor(color: String): String {
-        return if (color.length == 6 && !color.startsWith("#")) "#$color" else color
-    }
 
 }
