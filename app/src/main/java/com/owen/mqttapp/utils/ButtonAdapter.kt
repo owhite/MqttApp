@@ -35,18 +35,18 @@ class ButtonAdapter(
         var button = itemView.findViewById<AppCompatButton>(R.id.btn)
 
         init {
-            // Set click listener for the button
+
             button.setOnClickListener {
-//                val position = adapterPosition
-//                if (position != RecyclerView.NO_POSITION) {
-                val button = buttonsList[adapterPosition]
-                // Publish message to MQTT
-                mqttClient.onButtonClick(adapterPosition, buttonMessage)
-//                }
+                val buttonData = buttonsList[adapterPosition]
+                val emitMessage = if (buttonData.state == true) {
+                    """{"_type":"${buttonData.emitOn}","action":"reportLocation"}"""
+                } else {
+                    """{"_type":"${buttonData.emitOff}","action":"reportLocation"}"""
+                }
+                mqttClient.onButtonClick(adapterPosition, emitMessage)
             }
         }
 
-        private var buttonMessage: String = ""
 
         fun bind(button: ButtonData, data: DataSet) {
             // Bind button data to UI elements in the view holder
@@ -60,14 +60,12 @@ class ButtonAdapter(
             }
 
             if (button.state == true) {
-                buttonMessage = """{"_type":"cmd","action":"reportLocation"}"""
                 btn.text = button.textOn
                 btn.visibility = if (button.visible == true) View.VISIBLE else View.GONE
                 btn.setTextColor(parseColor(button.textColorOn))
                 btn.setBackgroundColor(parseColor(button.colorOn))
 
             } else {
-                buttonMessage = """{"_type":"button_state","number":1, "state":0}"""
                 btn.text = button.textOff
                 btn.visibility = if (button.visible == true) View.VISIBLE else View.GONE
                 btn.setTextColor(parseColor(button.textColorOff))

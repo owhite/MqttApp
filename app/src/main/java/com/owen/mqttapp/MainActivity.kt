@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             binding.etPassword.setText(preferences.getPassword().toString())
             binding.etTopic.setText(preferences.getMqtTopic().toString())
         }
+
         binding.btnSubscribe.setOnClickListener {
             val server = binding.etServer.text.toString()
             val port = binding.etPort.text.toString()
@@ -69,8 +70,9 @@ class MainActivity : AppCompatActivity() {
                         changeView()
                         mqttClient.subscribe(topic) { success ->
                             if (success) {
-
+                                preferences.setMqttConnected(true)
                                 val intent = Intent(this@MainActivity, SecondActivity::class.java)
+                                finishAffinity()
                                 startActivity(intent)
                             } else {
 
@@ -115,30 +117,11 @@ class MainActivity : AppCompatActivity() {
                     binding.btnSubscribe.visibility = View.VISIBLE
                 }
             }
-
         }
-
-        /*binding.btnSubscribe.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
-        }*/
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        preferences.setMqttConnected(false)
-        mqttClient.disconnectClient {}
     }
 
     override fun onResume() {
         super.onResume()
-//        if (preferences.isDetailsSaved() == false) {
-//            binding.etServer.text.clear()
-//            binding.etPort.text.clear()
-//            binding.etUsername.text.clear()
-//            binding.etPassword.text.clear()
-//            binding.etTopic.text.clear()
-//        }
-//
         if (preferences.isMqttConnected()) {
             binding.btnSubscribe.visibility = View.GONE
             binding.btnDisconnect.visibility = View.VISIBLE

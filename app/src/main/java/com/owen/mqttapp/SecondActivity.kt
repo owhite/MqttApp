@@ -1,9 +1,11 @@
 package com.owen.mqttapp
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -36,10 +38,13 @@ class SecondActivity : AppCompatActivity(), MessageCallback,
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
         preferences = Preference(this)
-
         mqttClient.setMessageCallback(this)
 
-        preferences.setMqttConnected(true)
+
+        binding.settings.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         binding.btnSend.setOnClickListener {
             mqttClient.publish(
                 preferences.getMqttTopic().toString(),
@@ -48,9 +53,27 @@ class SecondActivity : AppCompatActivity(), MessageCallback,
         }
     }
 
+
     override fun onResume() {
         super.onResume()
+
         mqttClient.connect()
+        if (preferences.isMqttConnected()) {
+            binding.llConnected.visibility = View.VISIBLE
+            binding.llNotConnected.visibility = View.GONE
+            if (mqttClient != null && mqttClient.isConnected()) {
+                // The MQTT client is connected but not subscribed
+                mqttClient.subscribe(preferences.getMqttTopic().toString()) { success ->
+
+                }
+            }
+//            mqttClient.subscribe(preferences.getMqttTopic().toString()) {
+//            }
+        } else {
+            binding.llConnected.visibility = View.GONE
+            binding.llNotConnected.visibility = View.VISIBLE
+        }
+
     }
 
     override fun onMessageReceived(message: String) {

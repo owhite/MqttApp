@@ -110,10 +110,26 @@ class MQTTClient(
                     Log.w(TAG, "Connected to $it")
                     isConnected = true
 
+                    if (reconnect) {
+                        resubscribeToTopics()
+                    }
                 }
             }
         })
         connect()
+    }
+
+    private fun resubscribeToTopics() {
+        // Resubscribe to the topic(s) here
+        // For example:
+        val topic = preference.getMqttTopic().toString()
+        subscribe(topic) { success ->
+            if (success) {
+                Log.d(TAG, "Successfully re-subscribed to topic: $topic")
+            } else {
+                Log.e(TAG, "Failed to re-subscribe to topic: $topic")
+            }
+        }
     }
 
     private fun scheduleReconnect() {
@@ -144,6 +160,10 @@ class MQTTClient(
             mqttAndroidClient.connect(mqttConnectOptions, null, object : IMqttActionListener {
                 override fun onSuccess(asyncActionToken: IMqttToken?) {
                     Log.d(TAG, "Connected to the broker")
+                    preference.setMqttConnected(true)
+
+//                    Log.d(TAG, MQTT_CLIENT_ID.toString())
+
                     // Set up any additional configurations after connection
                 }
 

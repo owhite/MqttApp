@@ -8,6 +8,7 @@ private const val userName = "userName"
 private const val passWord = "passWord"
 private const val brokerURL = "brokerURL"
 private const val mqttTopic = "mqttTopic"
+private const val isMqttConnected = "isMqttConnected"
 private const val saved = "saved"
 private const val mqttIp = "mqttIp"
 private const val mqttPort = "mqttPort"
@@ -69,7 +70,7 @@ class Preference(private val context: Context) {
     }
 
     fun isMqttConnected(): Boolean {
-        return preferences.getBoolean("isConnected", false)
+        return preferences.getBoolean(isConnected, false)
     }
 
     fun setMqttUsername(username: String) {
@@ -81,6 +82,7 @@ class Preference(private val context: Context) {
     fun getMqttUsername(): String? {
         return preferences.getString(userName, "")
     }
+
 
     fun setDetailsSaved(isSaved: Boolean) {
         preferences.edit()
