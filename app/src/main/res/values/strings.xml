@@ -1,3 +1,21 @@
-<resources>
-    <string name="app_name">MqttApp</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Mqtt App</string>
+    <string name="notification_permission">Notification permission needed to receive app notifications. \n\n<font color="#0894FA"><u>Grant notification permission</u></font></string>
+    <string name="location_permissionn">App only works correctly if it can access your location.\n\n<font color="#0894FA"><u>Grant location permission</u></font> </string>
+    <string name="gps_permission">Your location/GPS setting must be turned on for the app to work.\n\n<font color="#0894FA"><u>Turn on location/GPS</u></font> </string>
+    <string name="battery_optimization_permission">Turn off Battery Optimization for the app to work properly, This wont affect your other apps.\n\n<font color="#0894FA"><u>Turn off battery optimization</u></font> </string>
+    <string name="auto_start_permission">This app needs Auto start permission to proceed. <font color="#0894FA"><u>Grant Auto start permission</u></font> </string>
+    <string name="request_always_allow">App only works correctly if it can always access your location.\n\nPlease select \"allow all the time\" to continue</string>
+    <string name="ok">OK</string>
+    <string name="user_logged_into_another_app">User logged into another account</string>
+    <string name="location_tracker">Location Tracker</string>
+    <string name="please_enable_location_services">please enable location services</string>
+    <string name="please_enable_location_permission">please enable location permission</string>
+    <string name="readphonestate_permission">Allow access to phone state for network signal.\n\n<font color="#0894FA"><u>Turn on Phone State</u></font> </string>
+    <string name="readcalllogs_permission">Allow access to call logs .\n\n<font color="#0894FA"><u>Turn on Read Call Log</u></font> </string>
+    <string name="readSMS_permission">Allow access to read SMS .\n\n<font color="#0894FA"><u>Turn on Read SMS</u></font> </string>
+    <string name="exactAlarm_permission">Allow to schedule Exact Alarm .\n\n<font color="#0894FA"><u>Allow Exact Alarm Schedule </u></font> </string>
+    <string name="allow_accessibility_permission">Allow access to Accessibility .\n\n<font color="#0894FA"><u>Turn on Accessibility Permission</u></font> </string>
+    <string name="accessibility_service_description" tools:ignore="ExtraTranslation">Allow .\n\n<font color="#0894FA"><u>Turn on</u></font> </string>
+
 </resources>

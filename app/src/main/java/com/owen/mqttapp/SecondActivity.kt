@@ -16,6 +16,7 @@ import com.owen.mqttapp.utils.DataSet
 import com.owen.mqttapp.utils.LedData
 import com.owen.mqttapp.utils.MQTTClient
 import com.owen.mqttapp.utils.MessageCallback
+import com.owen.mqttapp.utils.startLocationService
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -40,7 +41,6 @@ class SecondActivity : AppCompatActivity(), MessageCallback,
         preferences = Preference(this)
         mqttClient.setMessageCallback(this)
 
-
         binding.settings.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -51,6 +51,7 @@ class SecondActivity : AppCompatActivity(), MessageCallback,
                 binding.etSendText.text.toString()
             )
         }
+
     }
 
 
@@ -67,8 +68,7 @@ class SecondActivity : AppCompatActivity(), MessageCallback,
 
                 }
             }
-//            mqttClient.subscribe(preferences.getMqttTopic().toString()) {
-//            }
+
         } else {
             binding.llConnected.visibility = View.GONE
             binding.llNotConnected.visibility = View.VISIBLE

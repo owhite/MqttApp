@@ -39,9 +39,9 @@ class ButtonAdapter(
             button.setOnClickListener {
                 val buttonData = buttonsList[adapterPosition]
                 val emitMessage = if (buttonData.state == true) {
-                    """{"_type":"${buttonData.emitOn}","action":"reportLocation"}"""
+                    """{"_type":"cmd","action":"${buttonData.emitOn}"}"""
                 } else {
-                    """{"_type":"${buttonData.emitOff}","action":"reportLocation"}"""
+                    """{"_type":"cmd","action":"${buttonData.emitOff}"}"""
                 }
                 mqttClient.onButtonClick(adapterPosition, emitMessage)
             }
