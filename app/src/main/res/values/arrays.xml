@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="update_intervals">
+        <item>15 Second</item>
+        <item>30 Second</item>
+        <item>1 Minute</item>
+    </string-array>
+    <string-array name="smallest_displacements">
+        <item>2 meters</item>
+        <item>5 meters</item>
+        <item>10 meters</item>
+        <item>25 meters</item>
+        <item>50 meters</item>
+    </string-array>
+</resources>

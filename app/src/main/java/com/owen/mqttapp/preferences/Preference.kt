@@ -8,14 +8,14 @@ private const val userName = "userName"
 private const val passWord = "passWord"
 private const val brokerURL = "brokerURL"
 private const val mqttTopic = "mqttTopic"
-private const val isMqttConnected = "isMqttConnected"
 private const val saved = "saved"
-private const val mqttIp = "mqttIp"
-private const val mqttPort = "mqttPort"
-private const val mqttName = "mqttName"
+private const val isLogin = "isLogin"
+private const val updateDisplacement = "updateDisplacement"
+private const val updateInterval = "updateInterval"
+private const val isServiceStarted = "isServiceStarted"
+private const val locationServiceState = "locationServiceState"
+private const val mqtt = "mqtt"
 private const val isConnected = "isConnected"
-private const val mqttPassword = "mqttPassword"
-private const val mqtTopic = "mqtTopic"
 
 
 class Preference(private val context: Context) {
@@ -124,5 +124,50 @@ class Preference(private val context: Context) {
         return preferences.getString(brokerURL, "")
     }
 
+    fun isMqttEnabled(): Boolean {
+        return preferences.getBoolean(mqtt, false)
+    }
+
+    fun setLocationServiceState(state: Boolean) {
+        preferences.edit()
+            .putBoolean(locationServiceState, state)
+            .apply()
+    }
+
+    fun setServiceStatus(status: Boolean) {
+        preferences.edit()
+            .putBoolean(isServiceStarted, status)
+            .apply()
+    }
+
+    fun setSmallestDisplacement(displacement: Float) {
+        preferences.edit()
+            .putFloat(updateDisplacement, displacement)
+            .apply()
+    }
+    fun getSmallestDisplacement(): Float {
+        return preferences.getFloat(updateDisplacement, 5F)
+    }
+
+    fun getIsLoggedIn(): Boolean {
+        return preferences.getBoolean(
+            isLogin, false
+        )
+    }
+
+    fun setIsLoggedIn(state: Boolean) {
+        preferences.edit()
+            .putBoolean(isLogin, state)
+            .apply()
+    }
+
+    fun setUpdateInterval(interval: Long) {
+        preferences.edit()
+            .putLong(updateInterval, interval)
+            .apply()
+    }
+    fun getUpdateInterval(): Long {
+        return preferences.getLong(updateInterval, 15000L)
+    }
 
 }
