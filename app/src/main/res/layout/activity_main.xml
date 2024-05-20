@@ -16,8 +16,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
             android:layout_marginVertical="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -25,29 +26,12 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/textview_background"
                 android:gravity="center"
-                android:paddingVertical="10dp"
+                android:paddingVertical="7dp"
                 android:text="MQTT Settings"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:layout_marginVertical="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/textview_background"
-                android:gravity="center"
-                android:paddingVertical="10dp"
-                android:text="MQTT Details"
-                android:textColor="@color/white"
-                android:textSize="25sp" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -194,7 +178,7 @@
             android:id="@+id/btnDisconnect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="60dp"
             android:layout_marginVertical="20dp"
             android:background="@drawable/textview_background"
             android:text="Disconnect"
@@ -205,19 +189,41 @@
             android:id="@+id/btnSubscribe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="60dp"
             android:layout_marginVertical="20dp"
             android:background="@drawable/textview_background"
             android:text="Subscribe"
             android:textColor="@color/white"
             android:visibility="visible" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textview_background"
+                android:gravity="center"
+                android:paddingVertical="7dp"
+                android:text="Location Settings"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/frequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            android:paddingTop="5dp">
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            >
 
             <TextView
                 android:id="@+id/headingTextView"
@@ -225,8 +231,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/textview_background"
                 android:paddingStart="10dp"
                 android:text="Upload Frequency"
@@ -238,9 +242,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/headingTextView"
-                android:background="#D1C7C7"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="15dp" />
+                android:background="#C3BEBE" />
 
 
         </RelativeLayout>
@@ -249,7 +252,10 @@
             android:id="@+id/displacement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
             android:paddingTop="5dp">
 
             <TextView
@@ -258,7 +264,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/textview_background"
                 android:paddingStart="10dp"
                 android:text="Smallest Displacement"
@@ -270,8 +275,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/distanceTextView"
-                android:background="#D1C7C7"
-                android:layout_marginVertical="5dp"/>
+                android:layout_marginVertical="5dp"
+                android:background="#C3BEBE" />
 
 
         </RelativeLayout>
@@ -281,7 +286,7 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
+            android:layout_marginHorizontal="60dp"
             android:layout_marginVertical="20dp"
             android:background="@drawable/textview_background"
             android:text="Save"
